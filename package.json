@@ -1,0 +1,17 @@
+{
+  "name": "graphql",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "esbuild src/index.ts --bundle --outfile=dist/index.js --watch",
+    "start": "node dist/index.js",
+    "serve": "esbuild src/index.ts --bundle --outfile=dist/index.js && node dist/index.js"
+  },
+  "keywords": [],
+  "author": "Osama Mohammed",
+  "license": "MIT",
+  "dependencies": {
+		"esbuild": "^0.24.2"
+	}
+}

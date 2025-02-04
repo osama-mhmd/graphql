@@ -1,4 +1,4 @@
-fetch("http://localhost:4000/graphql", {
+fetch("http://localhost:4000", {
   method: "POST",
   headers: {
     "content-type": "application/json",

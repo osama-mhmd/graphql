@@ -1,7 +1,8 @@
-import express from "express";
-import { createHandler } from "graphql-http/lib/use/express";
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
 import { buildSchema } from "graphql";
 import { readFileSync } from "fs";
+
 import { initializedDB } from "./db";
 import queries from "./resolvers/queries";
 import mutations from "./resolvers/mutations";
@@ -11,11 +12,10 @@ const schema = buildSchema(schemaFile);
 const rootValue = { ...queries, ...mutations };
 
 initializedDB();
-const app = express();
 
-// @ts-ignore -> This is not my error. see: https://github.com/graphql/graphql-http/issues/142
-app.all("/graphql", createHandler({ schema, rootValue }));
-
-app.listen(4000);
-
-console.log("Running a GraphQL API server at http://localhost:4000/graphql");
+const server = new ApolloServer({ schema, rootValue });
+startStandaloneServer(server, {
+  listen: { port: 4000 },
+}).then(({ url }) => {
+  console.log(`GraphQL server is running at ${url}`);
+});

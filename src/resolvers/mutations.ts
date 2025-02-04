@@ -2,7 +2,16 @@ import db from "../db";
 
 const mutations = { addUser, removeUser, updateUser };
 
-async function addUser({ name, email }: { name: string; email: string }) {
+type UserAdditionContent = {
+  name: string;
+  email: string;
+};
+
+async function addUser({
+  input: { name, email },
+}: {
+  input: UserAdditionContent;
+}) {
   const result = db.run("INSERT INTO users (name, email) VALUES (?, ?)", [
     name,
     email,
@@ -20,12 +29,10 @@ async function removeUser({ id }: { id: number }) {
 }
 async function updateUser({
   id,
-  name,
-  email,
+  input: { name, email },
 }: {
   id: number;
-  name: string;
-  email: string;
+  input: UserAdditionContent;
 }) {
   const result = db.run("UPDATE users SET name = ?, email = ? WHERE id = ?", [
     name,

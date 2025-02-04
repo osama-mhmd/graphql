@@ -7,3 +7,12 @@ type Query {
   users: [User!]!
   user(id: Int!): User
 }
+type UserAdditionContent {
+  name: String!
+  email: String!
+}
+type Mutations {
+  addUser(UserAdditionContent): Int!
+  removeUser(id: Int!): Boolean
+  updateUser(id: Int!): User
+}

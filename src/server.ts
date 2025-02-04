@@ -5,15 +5,27 @@ import { readFileSync } from "fs";
 
 const schemaFile = readFileSync("./src/schema.gql", "utf-8");
 
-var schema = buildSchema(schemaFile);
+const schema = buildSchema(schemaFile);
 
-var root = {
-  hello() {
-    return "Hello world!";
-  },
+const testUser = {
+  id: 1,
+  name: "Osama",
+  email: "me@gmail.com",
 };
 
-var app = express();
+const root = {
+  // queries
+  users() {
+    return [testUser];
+  },
+  user({ id }: { id: string }) {
+    return testUser;
+  },
+  // mutations
+  // implement mutations
+};
+
+const app = express();
 
 // @ts-ignore -> This is not my error. see: https://github.com/graphql/graphql-http/issues/142
 app.all("/graphql", createHandler({ schema, rootValue: root }));

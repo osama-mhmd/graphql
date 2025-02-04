@@ -6,7 +6,10 @@ fetch("http://localhost:4000/graphql", {
   body: JSON.stringify({
     query: `
       query {
-        hello
+        user (id: 1) {
+          name
+          email
+        }
       }
     `,
   }),

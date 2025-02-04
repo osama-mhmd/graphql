@@ -1,21 +1,39 @@
-import { openDB } from "../db";
+import db from "../db";
 
 const mutations = { addUser, removeUser, updateUser };
 
-async function addUser() {
-  const db = await openDB();
+async function addUser({ name, email }: { name: string; email: string }) {
+  const result = db.run("INSERT INTO users (name, email) VALUES (?, ?)", [
+    name,
+    email,
+  ]);
 
-  // add to db
+  return result.lastInsertRowid;
 }
-async function removeUser() {
-  const db = await openDB();
-
-  // remove from db
+async function removeUser({ id }: { id: number }) {
+  try {
+    db.run("DELETE FROM users WHERE id = ?", [id]);
+    return true;
+  } catch {
+    return false;
+  }
 }
-async function updateUser() {
-  const db = await openDB();
+async function updateUser({
+  id,
+  name,
+  email,
+}: {
+  id: number;
+  name: string;
+  email: string;
+}) {
+  const result = db.run("UPDATE users SET name = ?, email = ? WHERE id = ?", [
+    name,
+    email,
+    id,
+  ]);
 
-  // update db
+  return result.lastInsertRowid;
 }
 
 export default mutations;

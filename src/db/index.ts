@@ -1,3 +1,5 @@
-export async function openDB() {}
+import { Database } from "bun:sqlite";
 
-export async function initializedDB() {}
+const db = new Database(process.env.DB_FILE);
+
+export default db;

@@ -11,8 +11,8 @@ input UserAdditionContent {
   name: String!
   email: String!
 }
-type Mutations {
+type Mutation {
   addUser(input: UserAdditionContent!): Int!
   removeUser(id: Int!): Boolean
-  updateUser(id: Int!, input: UserAdditionContent!): User
+  updateUser(id: Int!, input: UserAdditionContent!): User!
 }

@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "serve": "bun run src/server.ts"
+    "serve": "bun run src/server.ts",
+    "migrate": "bun run src/db/migrate.ts"
   },
   "keywords": [],
   "author": "Osama Mohammed",
@@ -15,6 +16,7 @@
     "graphql-http": "^1.22.4"
   },
   "devDependencies": {
+    "@types/bun": "^1.2.2",
     "typescript": "^5.7.3"
   }
 }

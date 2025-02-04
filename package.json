@@ -4,14 +4,19 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "esbuild src/index.ts --bundle --outfile=dist/index.js --watch",
-    "start": "node dist/index.js",
-    "serve": "esbuild src/index.ts --bundle --outfile=dist/index.js && node dist/index.js"
+    "serve": "ts-node src/server.ts"
   },
   "keywords": [],
   "author": "Osama Mohammed",
   "license": "MIT",
   "dependencies": {
-		"esbuild": "^0.24.2"
-	}
+    "express": "^4.21.2",
+    "graphql": "^16.10.0",
+    "graphql-http": "^1.22.4"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
 }
